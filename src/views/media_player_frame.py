@@ -145,7 +145,7 @@ class MediaPlayerFrame(ctk.CTkFrame):
             row=1,
             column=0,
             padx=8,
-            pady=(0, 8),
+            pady=4,
             sticky="ew",
         )
 
