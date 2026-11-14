@@ -1,22 +1,15 @@
-import vlc
-
 from sys import platform
 from threading import Event, RLock, Thread
 from collections.abc import Callable
+
+import vlc
 
 from utils.log_utils import logger
 
 
 class VLCService:
-    _PLAYING = vlc.State.Playing
-    _PAUSED = vlc.State.Paused
-    _ENDED = vlc.State.Ended
-    _STOPPED = vlc.State.Stopped
-    _IDLE = vlc.State.NothingSpecial
-    _ERROR = vlc.State.Error
 
-    def __init__(self, path: str) -> None:
-        self._vlc_path: str = path
+    def __init__(self) -> None:
 
         self._vlc_media: vlc.Media | None = None
         self._vlc_instance: vlc.Instance | None = None
@@ -71,7 +64,6 @@ class VLCService:
             try:
                 if self._vlc_instance is None:
                     self._vlc_instance = self._platform_specific_instance()
-                    self._vlc_instance.log_unset()  # Suppresses VLC logs
 
                 if self._vlc_media_player is None:
                     self._vlc_media_player = self._vlc_instance.media_player_new()
@@ -89,7 +81,6 @@ class VLCService:
                     "--aout=directsound",
                     "--avcodec-skiploopfilter=0",
                     "--avcodec-hw=any",
-                    f"--plugin-path={self._vlc_path}",
                 ]
             )
         return vlc.Instance(["--quiet", "--verbose=0", "--aout=pulse", "--no-xlib"])
@@ -178,10 +169,13 @@ class VLCService:
         if self._vlc_media_player is None:
             return True
 
+        stopped = vlc.State.Stopped
+        idle = vlc.State.NothingSpecial
+
         state = self._vlc_media_player.get_state()
         return state in (
-            self._STOPPED,
-            self._IDLE,  # State when media is stopped or no media is currently loaded
+            stopped,
+            idle  # State when media is stopped or no media is currently loaded
         )
 
     def _load_media(self, media_file: str) -> None:
@@ -302,9 +296,12 @@ class VLCService:
         """
         if self._vlc_media_player is None:
             return -1
+        
+        paused = vlc.State.Paused 
+        ended = vlc.State.Ended
 
         state = self._vlc_media_player.get_state()
-        if state not in [self._PAUSED, self._ENDED]:
+        if state not in [paused, ended]:
             return -1
 
         return self._vlc_media_player.video_take_snapshot(0, filename, 0, 0)
@@ -351,22 +348,22 @@ class VLCService:
         return self._vlc_instance is not None
 
     def is_media_player_playing(self) -> bool:
-        return self._get_media_player_state() == self._PLAYING
+        return self._get_media_player_state() == vlc.State.Playing
 
     def is_media_player_paused(self) -> bool:
-        return self._get_media_player_state() == self._PAUSED
+        return self._get_media_player_state() == vlc.State.Paused
 
     def is_media_player_stopped(self) -> bool:
-        return self._get_media_player_state() == self._STOPPED
+        return self._get_media_player_state() == vlc.State.Stopped
 
     def is_media_player_idle(self) -> bool:
-        return self._get_media_player_state() == self._IDLE
+        return self._get_media_player_state() == vlc.State.NothingSpecial
 
     def is_media_player_ended(self) -> bool:
-        return self._get_media_player_state() == self._ENDED
+        return self._get_media_player_state() == vlc.State.Ended
 
     def is_media_player_errored(self) -> bool:
-        return self._get_media_player_state() == self._ERROR
+        return self._get_media_player_state() == vlc.State.Error
 
     def _get_media_player_state(self):
         if self._vlc_media_player is None:

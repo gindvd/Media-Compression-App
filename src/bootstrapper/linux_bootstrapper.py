@@ -27,7 +27,7 @@ def initialize_linux(app_state: AppState) -> App:
     services = Services(
         ffmpeg_service=FFmpegService(ffmpeg_path="ffmpeg"),
         ffprobe_service=FFprobeService(path="ffprobe"),
-        vlc_service=VLCService(path="vlc")
+        vlc_service=VLCService()
     )
 
     app: App = App(app_state=app_state, services=services)
