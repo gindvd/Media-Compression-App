@@ -22,7 +22,7 @@ class SettingsFrame(ctk.CTkFrame):
         self._video_codec = ctk.StringVar(self, value="libx244")
         self._container = ctk.StringVar(self, value="mp4")
         self._resolution = ctk.StringVar(self, value="1920x1080")
-        self._frame_rate = ctk.StringVar(self, value="40")
+        self._frame_rate = ctk.StringVar(self, value="60")
         self._preset_speed = ctk.StringVar(self, value="Medium")
         self._audio_codec = ctk.StringVar(self, value="aac")
         self._audio_bitrate = ctk.StringVar(self, value="128k")
@@ -207,12 +207,12 @@ class SettingsFrame(ctk.CTkFrame):
         self._resolution_dropdown = ctk.CTkComboBox(
             master=self._video_section,
             values=[
-                "3840x2140",
-                "2540x1440",
+                "3840x2160",
+                "2560x1440",
                 "1920x1080",
                 "1280x720",
                 "854x480",
-                "440x340",
+                "640x360",
             ],
             state="readonly",
             command=self._handle_resolution_change,
