@@ -1,7 +1,7 @@
 from pathlib import Path
+from os import path
 
 import sys
-import os
 
 
 def resource_path(relative_path: str = "") -> str:
@@ -11,11 +11,11 @@ def resource_path(relative_path: str = "") -> str:
 
 
 def get_button_image_path(img_name: str) -> str:
-    relative_path = os.path.join("assets", "images", "video_control_icons", img_name)
+    relative_path = path.join("assets", "images", "video_control_icons", img_name)
 
     abs_path = resource_path(relative_path)
 
-    if not os.path.isfile(abs_path):
+    if not path.isfile(abs_path):
         raise SystemExit(f"Missing dependency: {abs_path}")
 
     return abs_path
