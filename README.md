@@ -1,7 +1,5 @@
 # Media Compression App
 
----
-
 
 The Media Compression App is a Python based graphical interface for FFmpeg, allowing 
 the user to select options for compressing or converting video files. Other functionality 
