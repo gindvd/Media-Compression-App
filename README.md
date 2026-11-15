@@ -2,8 +2,10 @@
 
 
 [Windows App 5.1.0](https://github.com/gindvd/Media-Compression-App/releases/download/windows-release/MediaOptimizationTool_Windows_v5.1.0.zip)
-SHA256sum: f5756e20d0ca9f9c7c0306411db42b5a2bb9a3d3ba4f6c6d7e179c8f201bd2aa
 
+<div>
+SHA256sum: f5756e20d0ca9f9c7c0306411db42b5a2bb9a3d3ba4f6c6d7e179c8f201bd2aa
+</div>
 
 ---
 
