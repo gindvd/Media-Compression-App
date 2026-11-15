@@ -1,4 +1,6 @@
-# Media Compression App
+<h1 align="center">
+Media Compression App
+</h1>
 
 
 [Windows App 5.1.0](https://github.com/gindvd/Media-Compression-App/releases/download/windows-release/MediaOptimizationTool_Windows_v5.1.0.zip)
