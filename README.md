@@ -3,7 +3,7 @@ Media Compression App
 </h1>
 
 
-[Windows App 5.1.0](https://github.com/gindvd/Media-Compression-App/releases/download/windows-release/MediaOptimizationTool_Windows_v5.1.0.zip)
+[![Windows App 5.1.0](https://custom-icon-badges.demolab.com/badge/-Download-blue?style=for-the-badge&logo=download&logoColor=white "Download zip")](https://github.com/gindvd/Media-Compression-App/releases/download/windows-release/MediaOptimizationTool_Windows_v5.1.0.zip)
 
 <div>
 SHA256sum: f5756e20d0ca9f9c7c0306411db42b5a2bb9a3d3ba4f6c6d7e179c8f201bd2aa
