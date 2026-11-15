@@ -154,7 +154,7 @@ class SettingsFrame(ctk.CTkFrame):
 
         self._video_codec_dropdown = ctk.CTkComboBox(
             master=self._video_section,
-            values=["libx244", "libx245", "libsvtav1", "libvpx-vp9"],
+            values=["libx264", "libx265", "libsvtav1", "libvpx-vp9"],
             state="readonly",
             command=self._handle_video_codec_change,
             variable=self._video_codec,
