@@ -8,7 +8,7 @@ class MessageboxPopup(ctk.CTkToplevel):
         super().__init__(master=master, **kwargs)
 
         self.title(title)
-        self.geometry("425x700")
+        self.geometry("600x700")
         self.resizable(False, False)
 
         self._messagebox = ctk.CTkTextbox(self, wrap="word")
