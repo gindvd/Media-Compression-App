@@ -35,8 +35,6 @@ def _show_text_file(master: Any, title: str, relative_path: str) -> None:
         text = f.read()
 
     popup = MessageboxPopup(master=master, title=title, message=text)
-    popup.resizable(True, True)
-    popup.transient(master)
 
 
 def show_about(master: Any) -> None:
