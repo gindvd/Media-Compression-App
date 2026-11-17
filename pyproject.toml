@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "MediaOptimizationTool"
-version = "5.1.1"
+version = "5.2.0"
 description = "Optimization tool for compression, converting, and trimming media files with FFmpeg"
 authors = [
   {name = "David Gingerich", email = "gingerichdvd@gmail.com"}
