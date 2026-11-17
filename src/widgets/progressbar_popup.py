@@ -16,8 +16,13 @@ class ProgressbarPopup(ctk.CTkToplevel):
     ) -> None:
         super().__init__(master, **kwargs)
 
+        self._master = master
+
         self.title(title)
         self.resizable(False, False)
+
+        self._width = 250
+        self._height = 150
 
         self._bar_frame = ctk.CTkFrame(self, corner_radius=0)
 
@@ -37,6 +42,14 @@ class ProgressbarPopup(ctk.CTkToplevel):
         self._cancel_btn = ctk.CTkButton(self, text="Cancel", command=command)
 
         self._cancel_btn.pack(side="right", padx=10, pady=10)
+
+        self._spawn_x = int(self._master.winfo_width() * .5 + self._master.winfo_x() - .5 * self._width + 7)
+        self._spawn_y = int(self._master.winfo_height() * .5 + self._master.winfo_y() - .5 * self._height + 20)
+
+        self._master.update()
+
+        self.after(10)
+        self.geometry(f"{self._width}x{self._height}+{self._spawn_x}+{self._spawn_y}")
 
         self.lift()
         self.focus()

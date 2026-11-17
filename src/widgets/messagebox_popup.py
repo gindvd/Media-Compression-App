@@ -6,10 +6,13 @@ class MessageboxPopup(ctk.CTkToplevel):
 
     def __init__(self, master, title: str, message: str, **kwargs) -> None:
         super().__init__(master=master, **kwargs)
+        self._master = master
 
         self.title(title)
-        self.geometry("600x700")
         self.resizable(False, False)
+
+        self._width = 500
+        self._height = 600
 
         self._messagebox = ctk.CTkTextbox(self, wrap="word")
         self._messagebox.pack(expand=True, fill="both", padx=10, pady=10)
@@ -21,5 +24,13 @@ class MessageboxPopup(ctk.CTkToplevel):
         self._close_btn = ctk.CTkButton(self, text="Close", command=self.destroy)
 
         self._close_btn.pack(side="right", padx=10, pady=10)
+
+        self._master.update()
+
+        self._spawn_x = int(self._master.winfo_width() * .5 + self._master.winfo_x() - .5 * self._width + 7)
+        self._spawn_y = int(self._master.winfo_height() * .5 + self._master.winfo_y() - .5 * self._height + 20)
+
+        self.after(10)
+        self.geometry(f"{self._width}x{self._height}+{self._spawn_x}+{self._spawn_y}")
 
         self.lift()

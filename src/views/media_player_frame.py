@@ -279,6 +279,7 @@ class MediaPlayerFrame(ctk.CTkFrame):
         self._volume_slider = ctk.CTkSlider(
             master=self._volume_popup,
             height=100,
+            width=20,
             button_corner_radius=4,
             from_=0,
             to=100,
@@ -436,15 +437,14 @@ class MediaPlayerFrame(ctk.CTkFrame):
         btn_x = self._volume_btn.winfo_rootx()
         btn_y = self._volume_btn.winfo_rooty()
 
+        btn_x_half = self._volume_btn.winfo_height() // 2
+
         # Make sure the popup has calculated its requested size.
         self._volume_popup.update_idletasks()
 
-        popup_width = self._volume_popup.winfo_reqwidth()
-        popup_height = self._volume_popup.winfo_reqheight()
-
         # Center the popup horizontally above the volume button.
-        popup_x = btn_x + (self._volume_btn.winfo_width() - popup_width) // 2
-        popup_y = btn_y - popup_height - 5
+        popup_x = btn_x
+        popup_y = btn_y - self._volume_slider.winfo_height() - btn_x_half
 
         self._volume_popup.geometry(f"+{popup_x}+{popup_y}")
         self._volume_popup.deiconify()
